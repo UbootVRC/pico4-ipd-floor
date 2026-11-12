@@ -1,0 +1,8 @@
+# Build output and anything pulled from a headset (Pico binaries, calibration
+# data and logs are device-specific and not ours to redistribute).
+build/
+*.so
+*.zip
+*.bin
+*.log
+__pycache__/

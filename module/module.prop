@@ -1,0 +1,6 @@
+id=pico4-ipd-floor
+name=Pico 4 IPD floor fix
+version=1.0
+versionCode=1
+author=UbootVRC
+description=Lets the Pico 4 report IPD below 62 mm (down to 57 mm) to apps. Patches libpxrhmdservice.so at install time; only fits PICO OS 5.13.7.
