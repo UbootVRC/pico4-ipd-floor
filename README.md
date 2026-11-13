@@ -93,3 +93,7 @@ instruction encodings spelled out. To port, find the two
 `pxr_gd32ipd_position` and `pxr_ipd_position`) and the constants used beside
 the log string `set ipd force %f to %f avoid less min`, then update the
 offsets and hashes in both `tools/patch_lib.py` and `module/customize.sh`.
+
+## License
+
+MIT, see [LICENSE](LICENSE). This covers the scripts in this repository only; the library they patch belongs to Pico and is not distributed here.
