@@ -1,0 +1,33 @@
+name: Release
+
+# Pushing a tag like v1.0 builds the Magisk zip and publishes a release with it.
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build module zip
+        run: python3 build.py
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cat > notes.md <<'EOF'
+          Magisk module that lets a rooted Pico 4 report IPD below 62 mm (down to 57 mm).
+
+          **Only for PICO OS 5.13.7.** The installer checks the system library's hash and refuses any other build.
+
+          Install `pico4-ipd-floor.zip` in the Magisk app, reboot, then move the IPD slider once so the new value is published. See the README for details, caveats and how to uninstall.
+          EOF
+          gh release create "$GITHUB_REF_NAME" build/pico4-ipd-floor.zip \
+            --title "Pico 4 IPD floor fix $GITHUB_REF_NAME" \
+            --notes-file notes.md
